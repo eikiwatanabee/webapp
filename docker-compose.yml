@@ -29,8 +29,8 @@ services:
       - MYSQL_USER=laravel
       - MYSQL_PASSWORD=password
       - MYSQL_ROOT_PASSWORD=password
-  phpfpm:
-    container_name: phpfpm
+  api:
+    container_name: api
     build:
       context: ./app
     volumes:
@@ -44,4 +44,4 @@ services:
       - 8888:80
     volumes:
       - ./api:/work/backend
-    depends_on: ["phpfpm"]
+    depends_on: ["api"]
