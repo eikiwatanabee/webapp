@@ -30,7 +30,7 @@ RUN apt-get install -y \
   curl \
   gnupg
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs yarn
 RUN npm install npm@latest -g
 
 COPY ./usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
