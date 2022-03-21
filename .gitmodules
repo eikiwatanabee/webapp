@@ -5,4 +5,4 @@
 [submodule "api"]
 	path = api
 	url = https://github.com/YutoMoriyasu/webapp-api.git
-  ignore = dirty
+	ignore = dirty
