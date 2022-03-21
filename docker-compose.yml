@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  front:
+    container_name: front
+    build:
+      context: ./
+      dockerfile: ./docker/front/Dockerfile
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./front:/app
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+    ports:
+      - 3000:3000
+    command: bash -c 'yarn install && yarn dev'
+  mysql:
+    container_name: mysql
+    build:
+      context: ./db
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/var/lib/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+  phpfpm:
+    container_name: phpfpm
+    build:
+      context: ./app
+    volumes:
+      - ./api:/work/backend
+    depends_on: ["mysql"]
+  nginx:
+    container_name: nginx
+    build:
+      context: ./web
+    ports:
+      - 8888:80
+    volumes:
+      - ./api:/work/backend
+    depends_on: ["phpfpm"]
