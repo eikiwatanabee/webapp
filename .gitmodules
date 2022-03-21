@@ -1,0 +1,6 @@
+[submodule "front"]
+	path = front
+	url = https://github.com/YutoMoriyasu/webapp-front
+[submodule "api"]
+	path = api
+	url = https://github.com/YutoMoriyasu/webapp-api.git
