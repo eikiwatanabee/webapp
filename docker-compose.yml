@@ -45,3 +45,12 @@ services:
     volumes:
       - ./api:/work/backend
     depends_on: ["api"]
+  swagger-ui:
+    container_name: swagger-ui
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./api/openapi/openapi.yml:/work/backend/openapi.yml
+    environment:
+      SWAGGER_JSON: /work/backend/openapi.yml
+    ports:
+      - 8080:8080
