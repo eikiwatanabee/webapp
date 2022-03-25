@@ -54,3 +54,13 @@ services:
       SWAGGER_JSON: /work/backend/openapi.yml
     ports:
       - 8080:8080
+  api-mock:
+    container_name: api-mock
+    image: stoplight/prism:latest
+    ports:
+      - 4010:4010
+    # make random values by -d option
+    # command: mock -h 0.0.0.0 -d /work/backend/openapi.yml
+    command: mock -h 0.0.0.0 /work/backend/openapi.yml
+    volumes:
+      - ./api/openapi/:/work/backend/
